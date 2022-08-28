@@ -12,18 +12,27 @@ namespace WebApi1.Core.Services
             _dataProvider = dataProvider;
 		}
 
-        public void Create(Product product)
+        public Product Create(Product product)
         {
             _dataProvider.Create(product);
+            return product;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            if (id <0)
+            if (id < 0)
             {
-                return;
+                return false;
             }
-            _dataProvider.Delete(id);
+            var product = _dataProvider.Select(id);
+            if (product != null)
+            {
+                _dataProvider.Delete(id);
+                return true;
+            }
+            return false;
+                
+            
         }
 
         public Product Get(int id)
@@ -31,9 +40,15 @@ namespace WebApi1.Core.Services
             return _dataProvider.Select(id);
         }
 
-        public void Update(Product product)
+        public bool Update(Product product)
         {
-            _dataProvider.Update(product);
+            var selectProduct = _dataProvider.Select(product.Id);
+            if(selectProduct != null)
+            {
+                _dataProvider.Update(product);
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web.Api1.Core.Entities;
 using Web.Api1.Core.Interfaces;
 using Web.Api1.Infrastructure;
+using Web.Api1.Models;
 using WebApi1.Core.Services;
 
 namespace WebApplication1.Controllers
@@ -24,19 +25,19 @@ namespace WebApplication1.Controllers
             return _productService.Get(id);
         }
         [HttpPost]
-        public void Post([FromBody] Product product)
+        public void Post([FromBody] ProductModel product)
         {
-            _productService.Create(product);
+            _productService.Create(new Product( product.Name, product.Price));
         }
         [HttpPut]
-        public void Update([FromBody] Product product)
+        public void Update([FromBody] ProductModel product)
         {
-            _productService.Create(product);
+            _productService.Create(new Product(product.Name, product.Price));
         }
         [HttpDelete ("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _productService.Delete(id);
+            return _productService.Delete(id);
         }
 
     }

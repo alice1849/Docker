@@ -1,4 +1,5 @@
-﻿using Web.Api1.Core.Interfaces;
+﻿using Web.Api1.Core.Configuration;
+using Web.Api1.Core.Interfaces;
 using Web.Api1.Infrastructure;
 using WebApi1.Core.Services;
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSingleton<IDataProvider, DataProvider>();
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.Configure<DataProviderOptions>(builder.Configuration.GetSection("DataProviderOptions"));
+//builder.Services.AddSingleton(Configuration)
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
