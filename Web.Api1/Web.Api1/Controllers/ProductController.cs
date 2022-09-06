@@ -1,15 +1,14 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Web.Api1.Core.Entities;
 using Web.Api1.Core.Interfaces;
-using Web.Api1.Infrastructure;
 using Web.Api1.Models;
-using WebApi1.Core.Services;
 
-namespace WebApplication1.Controllers
+namespace Web.Api1.Controllers
 {
     [ApiController]
     [Route ("[controller]")]
+    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
+    
 	public class ProductController : ControllerBase
 
 	{
@@ -22,6 +21,8 @@ namespace WebApplication1.Controllers
         [HttpGet("{id}")]
 		public Product Get(int id)
         {
+            var res = _productService.Get(id);
+            //return res;
             return _productService.Get(id);
         }
         [HttpPost]

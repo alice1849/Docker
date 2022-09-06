@@ -1,7 +1,9 @@
-﻿using Web.Api1.Core.Configuration;
+﻿using System.Web.Http;
+using Web.Api1.Core.Configuration;
 using Web.Api1.Core.Interfaces;
 using Web.Api1.Infrastructure;
 using WebApi1.Core.Services;
+using System.Web.Http.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IDataProvider, DataProvider>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.Configure<DataProviderOptions>(builder.Configuration.GetSection("DataProviderOptions"));
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 //builder.Services.AddSingleton(Configuration)
 
 builder.Services.AddControllers();
@@ -24,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("corsapp");
 
 app.UseHttpsRedirection();
 

@@ -7,21 +7,27 @@ import { Product } from './models/ProductModel';
 
 
 
-async function getProduct() : Promise<Product> {
-  debugger
-  const response = await fetch ('https://localhost:7123/Product/0', {
-    mode: 'no-cors'
-  });
-  return await response.json();
+const getProduct  = async (url:string): Promise<Product> => {
   
+  const response = await fetch (url, {
+    method: "GET",
+    mode: 'cors'
+  });
+  const product = await response.json();
+
+  return await product as Product ;
+
 }
 
 function App() {
-
+  
   const [product1, setProduct1] = useState<Product | null>(null);
+
   useEffect(() => {
     const initialize = async () => {
-      const loadedProduct1 = await getProduct();
+      debugger
+      const loadedProduct1 = await getProduct('https://localhost:7123/Product/0');
+      console.log(loadedProduct1);
       setProduct1(loadedProduct1);
     }
     initialize();
