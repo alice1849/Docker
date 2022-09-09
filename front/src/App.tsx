@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import { NamedTupleMember } from 'typescript';
 import { Product } from './models/ProductModel';
+import GetProductComponent from './components/GetProductComponent';
+import PostProductComponent from './components/PostProductComponent';
+import DeleteProductComponent from './components/DeleteProductComponent';
+import PutProductComponent from './components/PutProductComponent';
 
 
 
@@ -25,18 +29,29 @@ function App() {
 
   useEffect(() => {
     const initialize = async () => {
-      debugger
+      //debugger
       const loadedProduct1 = await getProduct('https://localhost:7123/Product/0');
-      console.log(loadedProduct1);
+      //console.log(loadedProduct1);
       setProduct1(loadedProduct1);
     }
     initialize();
   }, [])
 
+
+ 
   return (
+    <>
     <div className="App">
-     <div> {product1?.name} {product1?.price}</div>
+     
+     <GetProductComponent></GetProductComponent>
+     <br></br>
+     <PostProductComponent></PostProductComponent>
+     <br></br>
+     <DeleteProductComponent></DeleteProductComponent>
+     <br></br>
+     <PutProductComponent></PutProductComponent>
     </div>
+    </>
   );
 }
 

@@ -30,10 +30,10 @@ namespace Web.Api1.Controllers
         {
             _productService.Create(new Product( product.Name, product.Price));
         }
-        [HttpPut]
-        public void Update([FromBody] ProductModel product)
+        [HttpPut ("{productToUpdateId}")]
+        public void Update([FromBody] ProductModel product, int productToUpdateId)
         {
-            _productService.Create(new Product(product.Name, product.Price));
+            _productService.Update(new Product(product.Name, product.Price), productToUpdateId);
         }
         [HttpDelete ("{id}")]
         public bool Delete(int id)

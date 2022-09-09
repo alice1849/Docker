@@ -7,7 +7,7 @@ namespace Web.Api1.Core.Interfaces
 	{
 		Product Create(Product product);
 		Product Get(int id);
-		bool Update(Product product);
+		bool Update(Product product, int productToUpdateId);
 		bool Delete(int id);
 	}
 }

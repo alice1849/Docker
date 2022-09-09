@@ -40,9 +40,10 @@ namespace WebApi1.Core.Services
             return _dataProvider.Select(id);
         }
 
-        public bool Update(Product product)
+        public bool Update(Product product, int productToUpdateId)
         {
-            var selectProduct = _dataProvider.Select(product.Id);
+            product.Id = productToUpdateId;
+            var selectProduct = _dataProvider.Select(productToUpdateId);
             if(selectProduct != null)
             {
                 _dataProvider.Update(product);
