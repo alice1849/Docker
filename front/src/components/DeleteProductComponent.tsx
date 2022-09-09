@@ -21,7 +21,7 @@ const DeleteProductComponent = () => {
         });
         
         const result = await response.json();
-        debugger
+        //debugger
         console.log(result);
         setResult(result);
        

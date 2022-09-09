@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 const PutProductComponent = () => {
 
@@ -6,7 +7,7 @@ const PutProductComponent = () => {
     const [price, setPrice] = useState(0);
     const [id, setId] = useState("");
     const updateProduct =  async () => {
-        debugger
+        //debugger
         const url = 'https://localhost:7123/Product/' + id;
         console.log(url);
         const response = await fetch('https://localhost:7123/Product/' + id,{
@@ -41,9 +42,12 @@ const PutProductComponent = () => {
         </p>  
        
         <button onClick={() => updateProduct()}>UPDATE</button>
-                 
+
+              
             
     </div>
+
+    
    );
 }
 export default PutProductComponent
