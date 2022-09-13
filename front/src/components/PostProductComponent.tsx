@@ -6,7 +6,7 @@ const PostProductComponent = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
     const createProduct =  async () => {
-        debugger
+        //debugger
         const response = await fetch('https://localhost:7123/Product',{
             method: 'POST',
             body: JSON.stringify({

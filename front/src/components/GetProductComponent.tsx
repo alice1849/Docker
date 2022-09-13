@@ -22,7 +22,7 @@ const GetProductComponent = () => {
         });
         
         const result = await response.json();
-        debugger
+        //debugger
         console.log(result);
         setLoadedProduct(result);
         return await result as Product ;
